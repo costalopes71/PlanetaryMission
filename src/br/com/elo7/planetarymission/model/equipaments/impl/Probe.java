@@ -1,6 +1,5 @@
 package br.com.elo7.planetarymission.model.equipaments.impl;
 
-import br.com.elo7.planetarymission.model.CardinalPoint;
 import br.com.elo7.planetarymission.model.equipaments.PlanetaryEquipment;
 
 public final class Probe extends PlanetaryEquipment {
@@ -10,14 +9,10 @@ public final class Probe extends PlanetaryEquipment {
 	//
 	// constructors
 	//
-	public Probe(final int probeId) {
-		super(probeId);
+	public Probe(final String name) {
+		super(name);
 	}
 	
-	public Probe(final int probeId, final CardinalPoint landingCardinalDirection) {
-		super(probeId, landingCardinalDirection);
-	}
-
 	//
 	// probe methods
 	//
