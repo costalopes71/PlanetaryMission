@@ -30,7 +30,7 @@ public class Planet {
 	 * @return <code>boolean</code>, true if <code>Planet</code> was created and added to <code>Space</code>, false if it was not.
 	 */
 	public static boolean createPlanet(int dimensionX, int dimensionY, String name) {
-		return Space.getInstance().addPlanetToSpace(new Planet(dimensionX, dimensionY, name));
+		return Universe.getInstance().addPlanetToSpace(new Planet(dimensionX, dimensionY, name));
 	}
 	
 	//
@@ -46,7 +46,7 @@ public class Planet {
 	}
 	
 	public static Planet getPlanet(int planetId) {
-		return Space.getInstance().getPlanet(planetId);
+		return Universe.getInstance().getPlanet(planetId);
 	}
 	
 	private synchronized Surface getSurface() {

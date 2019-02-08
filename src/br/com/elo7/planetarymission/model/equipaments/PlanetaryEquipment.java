@@ -31,6 +31,7 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 	private int positionY;
 	private final String name;
 	private final int equipmentId;
+	protected String serializedPhotoToEarth;
 
 	//
 	// contructors
@@ -57,11 +58,11 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 	public int getPositionX() {
 		return positionX;
 	}
-
+	
 	public int getPositionY() {
 		return positionY;
 	}
-
+	
 	public boolean isInOrbit() {
 		return inOrbit;
 	}
@@ -71,14 +72,6 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 			this.inOrbit = inOrbit;
 	}
 
-	public String getName() {
-		return name;
-	}
-	
-	public LocalDateTime getCreationDate() {
-		return creationDate;
-	}
-	
 	public boolean isLanded() {
 		return landed;
 	}
@@ -133,6 +126,7 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 				turnLeft();
 				break;
 			case FORWARD:
+				// canMove();
 				moveForward();
 				break;
 			default:
@@ -141,7 +135,15 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 			
 		}
 		
+		this.takePhoto();
+		
 	}
+	
+	protected void takePhoto() {
+		
+	};
+
+	public abstract String getSerializedPhotoToEarth();
 	
 	private final void turnLeft() {
 

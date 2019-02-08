@@ -11,20 +11,12 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Probe probe1 = new Probe("Brazil´s Probe");
-		Probe probe2 = new Probe("Brazil´s Probe");
 		
 		Nasa.registerEquipment(probe1);
 		Nasa.launchEquipment(probe1);
-		Nasa.launchEquipment(probe2);
 		
 		try {
 			probe1.land(1000, 9, 9);
-		} catch (LandingException e1) {
-			e1.printStackTrace();
-		}
-		
-		try {
-			probe2.land(1001, 20, 20);
 		} catch (LandingException e1) {
 			e1.printStackTrace();
 		}
@@ -38,8 +30,7 @@ public class Main {
 		System.out.println(probe1.getCurrentDirection().toString());
 		System.out.println("Probe " + probe1.getEquipmentId() + " at X: "+ probe1.getPositionX());
 		System.out.println("Probe " + probe1.getEquipmentId() + " at Y: "+ probe1.getPositionY());
-		
-		System.out.println("Probe 2 in orbit -> " + Nasa.isEquipmentInOrbit(probe2));
+		System.out.println("Probe photo " + probe1.getSerializedPhotoToEarth());
 		
 	}
 	

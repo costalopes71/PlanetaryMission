@@ -42,6 +42,11 @@ public class Earth extends Planet {
 			equipmentsInSpace.remove(planetaryEquipment);
 		}
 		
+		public static PlanetaryEquipment comunicateWithEquipment(final int equipmentId) {
+			PlanetaryEquipment equipment = equipments.stream().filter(eqp -> eqp.getEquipmentId() == equipmentId).findAny().orElse(null);
+			return equipment;
+		}
+		
 	}
 	
 }

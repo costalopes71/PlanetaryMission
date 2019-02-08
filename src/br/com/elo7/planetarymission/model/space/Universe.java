@@ -3,9 +3,9 @@ package br.com.elo7.planetarymission.model.space;
 import java.util.HashSet;
 import java.util.Set;
 
-final class Space {
+final class Universe {
 
-	private static Space space;
+	private static Universe space;
 	private static Set<Planet> planets = new HashSet<>();
 	
 	//
@@ -19,14 +19,16 @@ final class Space {
 		// adding Mars to space
 		planets.add(new Planet(10, 10, "Mars"));
 		
+		// start bigbang
+		
 	}
 	
-	private Space() { }
+	private Universe() { }
 	
-	static Space getInstance() {
+	static Universe getInstance() {
 		
 		if (space == null) {
-			space = new Space(); 
+			space = new Universe(); 
 		}
 		
 		return space;
