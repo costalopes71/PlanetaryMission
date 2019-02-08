@@ -19,7 +19,7 @@ final class Universe {
 		// adding Mars to space
 		planets.add(new Planet(10, 10, "Mars"));
 		
-		// start bigbang
+		//TODO start bigbang
 		
 	}
 	

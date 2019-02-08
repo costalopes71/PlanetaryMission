@@ -1,8 +1,8 @@
 package br.com.elo7.planetarymission.model.equipaments.impl;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Queue;
 import java.util.Random;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import br.com.elo7.planetarymission.exceptions.SerializePhotosException;
 import br.com.elo7.planetarymission.model.equipaments.PlanetaryEquipment;
@@ -13,9 +13,8 @@ public final class Probe extends PlanetaryEquipment {
 	
 	private static final long serialVersionUID = 1473730384674867126L;
 	
-	private List<ProbePhotos> probePhotos = new ArrayList<>();
+	private Queue<ProbePhotos> probePhotos = new LinkedBlockingQueue<>();
 	private ProbeCameras cameras = new ProbeCameras();
-	private int i;
 	
 	//
 	// constructors
@@ -44,10 +43,7 @@ public final class Probe extends PlanetaryEquipment {
 				return;
 			}
 			
-			if (i == probePhotos.size() - 1)
-				i = 0;
-				
-			serializedPhotoToEarth = probePhotos.get(i++).getUrl();
+			serializedPhotoToEarth = probePhotos.poll().getUrl();
 		}
 		
 	}
