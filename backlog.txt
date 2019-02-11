@@ -1,8 +1,4 @@
 Backlog:
 
-1 - vou construir um WS nesse projeto que permite:
-	- cadastrar uma sonda -> recebe o nome da sonda como parametro
-	- listar sondas -> exibe todas as sondas do Universo e exibindo seu nome, id, data de criacao
-	- pousar sonda -> recebe como parametro o id da sonda e tenta pousa-la
-	- enviar comandos -> enviar comandos para a sonda, devolve a nova posicao e nova foto e etc
-	
+	- colocar as regras de negocio na classe BO e tirar do bean
+	- criar testes 	
