@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 import br.com.elo7.planetarymission.dao.GenericEquipmentDAO;
-import br.com.elo7.planetarymission.exceptions.LandingException;
 import br.com.elo7.planetarymission.exceptions.RegistrationException;
-import br.com.elo7.planetarymission.model.equipaments.PlanetaryEquipment;
+import br.com.elo7.planetarymission.model.equipment.PlanetaryEquipment;
 
 public class GenericEquipmentDAOImp<T extends PlanetaryEquipment, K> implements GenericEquipmentDAO<T, K> {
 
@@ -34,11 +33,7 @@ public class GenericEquipmentDAOImp<T extends PlanetaryEquipment, K> implements 
 				.findAny()
 				.orElse(null);
 
-		if (equipment == null) {
-			throw new RegistrationException();
-		}
-
-		return (T) equipment;
+		return equipment == null ? null : (T) equipment;
 	}
 
 	@Override
@@ -60,17 +55,8 @@ public class GenericEquipmentDAOImp<T extends PlanetaryEquipment, K> implements 
 	}
 
 	@Override
-	public void land(K equipmentId, int planetId, int positionX, int positionY) throws LandingException {
-		
-		T equipment;
-		try {
-			equipment = find(equipmentId);
-		} catch (RegistrationException e) {
-			throw new LandingException(e.getMessage());
-		}
-		
-		equipment.land(planetId, positionX, positionY);
-		
+	public boolean remove(T equipment) {
+		return equipments.remove(equipment);
 	}
-	
+
 }

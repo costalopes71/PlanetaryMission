@@ -1,7 +1,8 @@
-package br.com.elo7.planetarymission.model.equipaments;
+package br.com.elo7.planetarymission.model.equipment;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -80,37 +81,28 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 	// methods
 	//
 
-	public void land(int planetId, int positionX, int positionY) throws LandingException {
+	public void land(Planet planet, int positionX, int positionY) throws LandingException {
 		
-		Planet planet = Planet.getPlanet(planetId);
+		try {
+			planet.occupySurfacePosition(positionX, positionY);
+			this.positionX = positionX;
+			this.positionY = positionY;
+		} catch (MovementException e) {
+			throw new LandingException(e);
+		}
 		
-		if (planet == null)
-			throw new LandingException("Planet " + planetId + " does not exist! Cannot land!");
-		
-		if (landed == false) {
-			
-			try {
-				planet.occupySurfacePosition(positionX, positionY);
-				this.positionX = positionX;
-				this.positionY = positionY;
-			} catch (MovementException e) {
-				e.printStackTrace();
-				throw new LandingException(e);
-			}
-			
-			landed = true;
-			this.planet = planet;
-			
-		} else
-			throw new LandingException("Equipment [" + equipmentId + "] is already landed!");
+		landed = true;
+		this.planet = planet;
 		
 	}
 	
 	@Override
+	public void travelRoute(Movement movements) throws MovementException {
+		travelRoute(Arrays.asList(movements));
+	}
+	
+	@Override
 	public void travelRoute(Collection<Movement> movements) throws MovementException {
-		
-		if (!landed)
-			throw new MovementException("Equipment is not landed, cannot move!");
 		
 		CardinalPoint rollbackDirection = currentDirection;
 		
@@ -135,9 +127,8 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 					}
 				
 			} catch (MovementException e) {
-				e.printStackTrace();
 				rollbackPositions(rollbackDirection, roolbackX, roolbackY);
-				throw new MovementException();
+				throw new MovementException(e);
 			}
 			
 		}
@@ -146,9 +137,18 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 		// se a rota for validada, ocupar a posicao na superficie
 		//
 		try {
-			planet.occupySurfacePosition(positionX, positionY);
+			if (movements.contains(Movement.FORWARD)) {
+				planet.occupySurfacePosition(positionX, positionY);
+				
+				//
+				// se a sonda moveu pra frente, desocupar a posicao de pouso
+				//
+				planet.clearOutSurfacePosition(roolbackX, roolbackY);
+				
+			}
 		} catch (MovementException e) {
 			rollbackPositions(rollbackDirection, roolbackX, roolbackY);
+			throw new MovementException(e);
 		}
 		
 	}
@@ -163,16 +163,16 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 
 		switch (currentDirection) {
 			case NORTH:
-				currentDirection = CardinalPoint.EAST;
-				break;
-			case EAST:
-				currentDirection = CardinalPoint.SOUTH;
-				break;
-			case SOUTH:
 				currentDirection = CardinalPoint.WEST;
 				break;
-			case WEST:
+			case EAST:
 				currentDirection = CardinalPoint.NORTH;
+				break;
+			case SOUTH:
+				currentDirection = CardinalPoint.EAST;
+				break;
+			case WEST:
+				currentDirection = CardinalPoint.SOUTH;
 				break;
 			default:
 				throw new IllegalArgumentException("Invalid direction!");
@@ -184,16 +184,16 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 
 		switch (currentDirection) {
 			case NORTH:
-				currentDirection = CardinalPoint.WEST;
-				break;
-			case WEST:
-				currentDirection = CardinalPoint.SOUTH;
-				break;
-			case SOUTH:
 				currentDirection = CardinalPoint.EAST;
 				break;
-			case EAST:
+			case WEST:
 				currentDirection = CardinalPoint.NORTH;
+				break;
+			case SOUTH:
+				currentDirection = CardinalPoint.WEST;
+				break;
+			case EAST:
+				currentDirection = CardinalPoint.SOUTH;
 				break;
 			default:
 				throw new IllegalArgumentException("Invalid direction!");

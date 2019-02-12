@@ -1,4 +1,4 @@
-package br.com.elo7.planetarymission.model.equipaments.impl;
+package br.com.elo7.planetarymission.model.equipment.impl;
 
 import java.util.Collection;
 import java.util.Queue;
@@ -9,7 +9,8 @@ import br.com.elo7.planetarymission.exceptions.LandingException;
 import br.com.elo7.planetarymission.exceptions.MovementException;
 import br.com.elo7.planetarymission.exceptions.SerializePhotosException;
 import br.com.elo7.planetarymission.model.directions.Movement;
-import br.com.elo7.planetarymission.model.equipaments.PlanetaryEquipment;
+import br.com.elo7.planetarymission.model.equipment.PlanetaryEquipment;
+import br.com.elo7.planetarymission.model.universe.Planet;
 import br.com.elo7.planetarymission.service.CamerasService;
 import br.com.elo7.planetarymission.service.impl.ProbeCamerasService;
 import br.com.elo7.planetarymission.service.response.Photos;
@@ -56,9 +57,9 @@ public final class Probe extends PlanetaryEquipment {
 	}
 	
 	@Override
-	public void land(int planetId, int positionX, int positionY) throws LandingException {
+	public void land(Planet planet, int positionX, int positionY) throws LandingException {
 		
-		super.land(planetId, positionX, positionY);
+		super.land(planet, positionX, positionY);
 		
 		//
 		// apos pousar tira foto da aterrisagem

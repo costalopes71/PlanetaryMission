@@ -21,7 +21,7 @@ public class Planet {
 	//
 	// default constructor
 	//
-	Planet(int dimensionX, int dimensionY, String name) {
+	public Planet(int dimensionX, int dimensionY, String name) {
 		surface = new Surface(dimensionX, dimensionY);
 		this.name = name;
 		this.planetId = autoincremetedId.getAndIncrement();
@@ -39,8 +39,8 @@ public class Planet {
 		return planetId;
 	}
 	
-	public static Planet getPlanet(int planetId) {
-		return Universe.getInstance().getPlanet(planetId);
+	public static Planet findPlanet(int planetId) {
+		return Universe.getInstance().findPlanet(planetId);
 	}
 	
 	//
@@ -51,8 +51,16 @@ public class Planet {
 		surface.occupyPosition(positionX, positionY);
 	}
 	
+	public void clearSurfacePosition(final int positionX, final int positionY) {
+		surface.clearOutPosition(positionX, positionY);
+	}
+	
 	public boolean isSurfacePositionOccupied(final int positionX, final int positionY) throws MovementException {
 		return surface.isPositionOccupied(positionX, positionY);
+	}
+	
+	public void clearOutSurfacePosition(final int positionX, final int positionY) {
+		surface.clearOutPosition(positionX, positionY);
 	}
 	
 	public boolean[][] getSurfaceGround() {
@@ -100,6 +108,10 @@ public class Planet {
 			this.ground = new boolean[x][y];
 		}
 		
+		public void clearOutPosition(int positionX, int positionY) {
+			ground[positionX][positionY] = false;
+		}
+
 		private boolean[][] getGround() {
 			return ground.clone();
 		}
@@ -123,5 +135,5 @@ public class Planet {
 		}
 		
 	}
-	
+
 }

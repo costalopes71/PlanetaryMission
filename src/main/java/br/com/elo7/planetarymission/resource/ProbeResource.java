@@ -21,7 +21,7 @@ import br.com.elo7.planetarymission.exceptions.LandingException;
 import br.com.elo7.planetarymission.exceptions.MovementException;
 import br.com.elo7.planetarymission.exceptions.RegistrationException;
 import br.com.elo7.planetarymission.model.directions.Movement;
-import br.com.elo7.planetarymission.model.equipaments.impl.Probe;
+import br.com.elo7.planetarymission.model.equipment.impl.Probe;
 import br.com.elo7.planetarymission.resource.to.LandTO;
 import br.com.elo7.planetarymission.resource.to.MovementTO;
 
@@ -41,10 +41,15 @@ public class ProbeResource {
 	public Response register(String name, @Context UriInfo uriInfo) {
 		
 		Probe probe = new Probe(name);
-		probeBO.registerProbe(probe);
+		try {
+			probeBO.registerProbe(probe);
+		} catch (RegistrationException e) {
+			e.printStackTrace();
+			return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+		}
 		
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder().path(Integer.toString(probe.getEquipmentId()));
-		return Response.created(builder.build()).build();
+		return Response.created(builder.build()).entity("Successfully registered equipment!").build();
 	}
 
 	@POST
@@ -70,13 +75,10 @@ public class ProbeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response move(MovementTO request, @Context UriInfo uri) {
 		
-		
-		List<Movement> movs;
 		Probe probe;
 		try {
 			probe = probeBO.find(request.getEquipmentId());
-			movs = parseMovements(request.getMovement());
-			probe.travelRoute(movs);
+			probeBO.move(probe, parseMovements(request.getMovement()));
 		} catch (RegistrationException | MovementException e) {
 			e.printStackTrace();
 			return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build(); 
@@ -88,7 +90,7 @@ public class ProbeResource {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscar(@PathParam("id") int equipmentId) {
+	public Response find(@PathParam("id") int equipmentId) {
 		
 		try {
 			return Response.accepted(probeBO.find(equipmentId)).build();

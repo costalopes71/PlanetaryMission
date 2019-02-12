@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 final class Universe {
 
-	private static Universe space;
+	private static Universe universe;
 	private static Set<Planet> planets = new HashSet<>();
 	
 	private Universe() { 
@@ -20,18 +20,18 @@ final class Universe {
 	
 	static Universe getInstance() {
 		
-		if (space == null) {
-			space = new Universe(); 
+		if (universe == null) {
+			universe = new Universe(); 
 		}
 		
-		return space;
+		return universe;
 	}
 	
 	boolean addPlanetToSpace(Planet planet) {
 		return planets.add(planet);
 	}
 	
-	Planet getPlanet(int planetId) {
+	Planet findPlanet(int planetId) {
 		
 		for (Planet planet : planets) {
 			if (planet.getPlanetId() == planetId)
@@ -58,8 +58,13 @@ final class Universe {
 				Stream<String> stream = reader.lines();)
 			{
 				
-				int x = random.nextInt(100); 
-				stream.forEach(line -> planets.add(new Planet(x, x, line)));
+				int x = 0;
+				while (x < 5) {
+					x = random.nextInt(100);
+				}
+				
+				int dim = x;
+				stream.forEach(line -> planets.add(new Planet(dim, dim, line)));
 				
 			} catch (Exception e) { 
 				e.printStackTrace();

@@ -1,4 +1,3 @@
 Backlog:
 
-	- colocar as regras de negocio na classe BO e tirar do bean
-	- criar testes 	
+	- redigir o readme

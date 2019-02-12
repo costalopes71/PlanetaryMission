@@ -18,7 +18,7 @@ import br.com.elo7.planetarymission.service.response.Photos;
 
 public class ProbeCamerasService extends CamerasService {
 
-	private static final String TOKEN = "DEMO_KEY";
+	private static final String TOKEN = "ZqtDrNYm38GIUcsuRByAMp3lUQ0rZw5HILtysboI";
 	private static final String BASE_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/";
 	private static final Pattern URL_PATTERN = Pattern.compile("\"img_src\":\".*?\"");
 	
