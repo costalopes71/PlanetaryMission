@@ -1,3 +1,4 @@
 Backlog:
 
 	- redigir o readme
+	- WS para listar os planetas
