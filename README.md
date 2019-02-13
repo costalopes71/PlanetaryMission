@@ -8,7 +8,7 @@ Tabela de conteúdo
  4. [Pré-requisitos](#pré-requisitos)
  5. [Como executar?](#como-executar)
  6. [Endpoints](#endpoints)
- 7. [E como testa!?](#e-como-testa-oo)
+ 7. [Como testar](#como-testar)
  8. [Tech/Framework utilizado](#techframework-utilizado)
  
 
@@ -76,7 +76,7 @@ mover sonda | `{ "equipmentId" : 2378237, "movement" : "R\|R\|M\|M" }` | mensage
 Obs: o atributo movement é uma string onde os movimentos devem ser separados por pipe `|`.
 Movimentos possíveis: R (direita), L (esquerda), M (a frente).
   
-## E como testa!? oO
+## Como testar?
 Basta executar a suíte de testes `br.com.elo7.planetarymission.model.test.PlanetaryMissionTestSuite`
 
 ## Tech/Framework utilizado
