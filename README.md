@@ -1,7 +1,7 @@
 # PlanetaryMission
 
 *******
-Tabelas de conteúdo 
+Tabela de conteúdo 
  1. [Introdução](#introdução)
  2. [Regras de negócio](#regras-de-negócio)
  3. [Highlights do projeto](#highlights-do-projeto)
