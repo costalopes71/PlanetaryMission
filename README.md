@@ -3,8 +3,10 @@
 ## Introdução
 Projeto tem por finalidade reproduzir a idéia de uma sonda espacial pousando em um planeta e podendo mover-se na superfície.
 Um típico exemplo seria um Rover da Nasa movendo-se na superfície de Marte a partir de comandos enviados da Terra. É exatamente este exemplo que o projeto tenta reproduzir.
+
 O projeto é um web service, basicamente, ele representa o Universo com seus planetas e as sondas espaciais. O webservice não depende de banco de dados, exatamente para que não haja nenhuma dependência que não seja executar o projeto. 
-Ele permite: listar os planetas existentes no universo, listar as sondas cadastradas, cadastrar uma sonda, pesquisar uma sonda, pousar uma sonda em um planeta, mover a sonda pela superfície do planeta.
+
+Permite: listar os planetas existentes no universo, listar as sondas cadastradas, cadastrar uma sonda, pesquisar uma sonda, pousar uma sonda em um planeta, mover a sonda pela superfície do planeta.
 
 ## Regras de negócio 
 - uma mesma sonda não pode pousar duas vezes
@@ -19,14 +21,17 @@ Ele permite: listar os planetas existentes no universo, listar as sondas cadastr
 - A possibilidade de simular comandos enviados da "Terra" para uma sonda no espaço e a resposta dessa sonda.
 - Um exemplo adolescente de divisão entre camadas (DAO, BO e Model) e exemplo de webservices REST usando as APIs Jersey e Jackson.
 
-## Tá bom, mas o que preciso fazer pro projeto funcionar!?
-Não existe nenhuma configuração especial para o projeto rodar!!! Basta executar de uma das maneiras explicadas na seção "Oxi, como roda isso?" (vulgo, próxima seção)
+## Pré-requisitos
+Não existe nenhuma configuração especial ou pré-requisito para o projeto rodar!!! Basta executar de uma das maneiras explicadas na seção abaixo.
 
 ## Como executar?
 - Usando DOCKER
 Abra o prompt de comando, power shell ou bash e execute o comando:
+
 `docker pull costalopes/planetarymissionws` -> para obter a imagem
+
 `docker run costalopes/planetarymissionws:latest` -> obter a imagem e executar
+
 Obs: a imagem nada mais é do que uma imagem de um Tomcat 9 com o arquivo war deployado nele, a porta do container exposta para o host é a 8080. =)
 
 - Usando ECLIPSE
@@ -43,6 +48,7 @@ Basta copiar o arquivo planetarymission.war para a pasta webapps do seu Tomcat e
 - Procurar sonda `http://localhost:8080/PlanetaryMission/rest/probe/{id da sonda a procurar}` (GET)
 - Pousar sonda `http://localhost:8080/PlanetaryMission/rest/probe/land` (POST)
   Obs: para pousar a sonda, enviar um JSON no corpo do HTTP como segue:
+  
   `
   { 
       "equipmentId" : 1928912,
@@ -52,12 +58,14 @@ Basta copiar o arquivo planetarymission.war para a pasta webapps do seu Tomcat e
   }
   `
 - Mover a sonda `http://localhost:8080/PlanetaryMission/rest/probe/move` (POST)
+
   `
   {
     "equipmentId" : 2378237,
     "movement" : "R|R|M|M"
   }
   `
+  
   Obs: o atributo movement é uma string onde os movimentos devem ser separados por pipe `|`.
   Movimentos possíveis: R (direita), L (esquerda), M (a frente).
   
