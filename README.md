@@ -77,4 +77,5 @@ Basta executar a suíte de testes `br.com.elo7.planetarymission.model.test.Plane
 - Webservices RESTFFULL
 - Jersey e Jackson
 - Maven
+- JUnit 4
 - Service Jersey consumindo API
