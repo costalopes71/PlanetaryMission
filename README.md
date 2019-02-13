@@ -17,7 +17,7 @@ Permite: listar os planetas existentes no universo, listar as sondas cadastradas
 - uma mesma sonda não pode ser registrada duas vezes
 
 ## Highlights do projeto
-- As URLs que a sonda manda de volta para a "Terra" são fotos de Rovers da Nasa que estão realmente na superfície de Marte. Para tanto é consumida uma API da Nasa que pode ser encontrada [aqui](https://api.nasa.gov/index.html#getting-started).
+- As URLs que a sonda manda de volta para a "Terra" são fotos de Rovers da Nasa que estão realmente na superfície de Marte e elas são MUITO legais!!! XD . Para tanto é consumida uma API da Nasa que pode ser encontrada [aqui](https://api.nasa.gov/index.html#getting-started).
 - A possibilidade de simular comandos enviados da "Terra" para uma sonda no espaço e a resposta dessa sonda.
 - Um exemplo adolescente de divisão entre camadas (DAO, BO e Model) e exemplo de webservices REST usando as APIs Jersey e Jackson.
 
