@@ -71,7 +71,7 @@ mover sonda | `http://localhost:8080/PlanetaryMission/rest/probe/move` | POST |
 listar planetas | \- | `{ "planetId" = 1001, "name" = "Mars" }` |
 cadastrar sonda | um texto no body do http. Ex: `BR29 Probe`| mensagem texto de sucesso ou erro |
 pousar sonda | `{ "equipmentId" : 1928912, "planetId" : 1001, "positionX" : 5, "positionY" : 5 }` | objeto sonda em json |
-mover sonda | `{ "equipmentId" : 2378237, "movement" : "R|R|M|M" }` | mensagem texto de sucesso ou erro |
+mover sonda | `{ "equipmentId" : 2378237, "movement" : "R\|R\|M\|M" }` | mensagem texto de sucesso ou erro |
 
 Obs: o atributo movement é uma string onde os movimentos devem ser separados por pipe `|`.
 Movimentos possíveis: R (direita), L (esquerda), M (a frente).
