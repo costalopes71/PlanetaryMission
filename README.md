@@ -55,33 +55,26 @@ Basta clonar o projeto ou baixar o arquivo WAR que esta na seção [release](htt
 Basta copiar o arquivo planetarymission.war para a pasta webapps do seu Tomcat e iniciar o Tomcat! =D (autodeploy flag deve estar com o valor true) 
 
 ## Endpoints
-- Listar planetas: `http://localhost:8080/PlanetaryMission/rest/planet` (GET)
-- Listar sondas: `http://localhost:8080/PlanetaryMission/rest/probe`  (GET)
-- Cadastrar sonda `http://localhost:8080/PlanetaryMission/rest/probe` (POST)
-  Obs: para cadastrar sonda no corpo do HTTP basta enviar uma String contendo o nome da sonda. Ex: `Elo7MaiorLegal Probe`
-- Procurar sonda `http://localhost:8080/PlanetaryMission/rest/probe/{id da sonda a procurar}` (GET)
-- Pousar sonda `http://localhost:8080/PlanetaryMission/rest/probe/land` (POST)
-  Obs: para pousar a sonda, enviar um JSON no corpo do HTTP como segue:
-  
-  `
-  { 
-      "equipmentId" : 1928912,
-      "planetId" : 1001,
-      "positionX" : 5,
-      "positionY" : 5
-  }
-  `
-- Mover a sonda `http://localhost:8080/PlanetaryMission/rest/probe/move` (POST)
 
-  `
-  {
-    "equipmentId" : 2378237,
-    "movement" : "R|R|M|M"
-  }
-  `
-  
-  Obs: o atributo movement é uma string onde os movimentos devem ser separados por pipe `|`.
-  Movimentos possíveis: R (direita), L (esquerda), M (a frente).
+| AÇÃO | URL | VERBO HTTP |
+| ------|-----|-----|
+listar planetas | `http://localhost:8080/PlanetaryMission/rest/planet` | GET |
+listar sondas | `http://localhost:8080/PlanetaryMission/rest/probe` | GET |
+cadastrar sonda | `http://localhost:8080/PlanetaryMission/rest/probe` | POST |
+procurar sonda | `http://localhost:8080/PlanetaryMission/rest/probe/{id da sonda a procurar}`| GET |
+pousar sonda | `http://localhost:8080/PlanetaryMission/rest/probe/land` | POST |
+mover sonda | `http://localhost:8080/PlanetaryMission/rest/probe/move` | POST |
+
+
+| AÇÃO | REQUEST | RESPONSE |
+| ------|-----|-----|
+listar planetas | \- | `{ "planetId" = 1001, "name" = "Mars" }` |
+cadastrar sonda | um texto no body do http. Ex: `BR29 Probe`| mensagem texto de sucesso ou erro |
+pousar sonda | `{ "equipmentId" : 1928912, "planetId" : 1001, "positionX" : 5, "positionY" : 5 }` | objeto sonda em json |
+mover sonda | `{ "equipmentId" : 2378237, "movement" : "R|R|M|M" }` | mensagem texto de sucesso ou erro |
+
+Obs: o atributo movement é uma string onde os movimentos devem ser separados por pipe `|`.
+Movimentos possíveis: R (direita), L (esquerda), M (a frente).
   
 ## E como testa!? oO
 Basta executar a suíte de testes `br.com.elo7.planetarymission.model.test.PlanetaryMissionTestSuite`
