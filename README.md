@@ -30,7 +30,7 @@ Abra o prompt de comando, power shell ou bash e execute o comando:
 
 `docker pull costalopes/planetarymissionws` -> para obter a imagem
 
-`docker run costalopes/planetarymissionws:latest` -> obter a imagem e executar
+`docker run -d -p 8080:8080 costalopes/planetarymissionws` -> obter a imagem e executar
 
 Obs: a imagem nada mais é do que uma imagem de um Tomcat 9 com o arquivo war deployado nele, a porta do container exposta para o host é a 8080. =)
 
