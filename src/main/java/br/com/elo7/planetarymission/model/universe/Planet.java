@@ -1,10 +1,13 @@
 package br.com.elo7.planetarymission.model.universe;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import br.com.elo7.planetarymission.exceptions.MovementException;
 
-public class Planet {
+public class Planet implements Comparable<Planet> {
 	
 	//
 	// instance attributes
@@ -41,6 +44,12 @@ public class Planet {
 	
 	public static Planet findPlanet(int planetId) {
 		return Universe.getInstance().findPlanet(planetId);
+	}
+	
+	public static List<Planet> listPlanets() {
+		ArrayList<Planet> planets = new ArrayList<>(Universe.getInstance().getPlanets());
+		Collections.sort(planets);
+		return Collections.unmodifiableList(planets);
 	}
 	
 	//
@@ -134,6 +143,11 @@ public class Planet {
 			
 		}
 		
+	}
+
+	@Override
+	public int compareTo(Planet o) {
+		return this.getName().compareTo(o.getName());
 	}
 
 }

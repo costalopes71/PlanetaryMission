@@ -40,6 +40,10 @@ final class Universe {
 		
 		return null;
 	}
+
+	Set<Planet> getPlanets() {
+		return planets;
+	}
 	
 	private static abstract class BigBang {
 
@@ -73,5 +77,5 @@ final class Universe {
 		}
 		
 	}
-	
+
 }
