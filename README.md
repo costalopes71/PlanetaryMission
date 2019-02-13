@@ -68,7 +68,7 @@ mover sonda | `http://localhost:8080/PlanetaryMission/rest/probe/move` | POST |
 
 | AÇÃO | REQUEST | RESPONSE |
 | ------|-----|-----|
-listar planetas | \- | `{ "planetId" = 1001, "name" = "Mars" }` |
+listar planetas |  | `{ "planetId" = 1001, "name" = "Mars" }` |
 cadastrar sonda | um texto no body do http. Ex: `BR29 Probe`| mensagem texto de sucesso ou erro |
 pousar sonda | `{ "equipmentId" : 1928912, "planetId" : 1001, "positionX" : 5, "positionY" : 5 }` | objeto sonda em json |
 mover sonda | `{ "equipmentId" : 2378237, "movement" : "R\|R\|M\|M" }` | mensagem texto de sucesso ou erro |
@@ -81,7 +81,7 @@ Basta executar a suíte de testes `br.com.elo7.planetarymission.model.test.Plane
 
 ## Tech/Framework utilizado
 - Java 8
-- Webservices RESTFFULL
+- Webservices RESTFULL
 - Jersey e Jackson
 - Maven
 - JUnit 4
