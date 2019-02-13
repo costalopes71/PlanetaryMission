@@ -1,15 +1,20 @@
 # PlanetaryMission
 
 ## Introdução
-Projeto que tem por finalidade reproduzir a idéia de uma sonda espacial pousando em um planeta e podendo mover-se na sua superfície.
+Projeto tem por finalidade reproduzir a idéia de uma sonda espacial pousando em um planeta e podendo mover-se na superfície.
 Um típico exemplo seria um Rover da Nasa movendo-se na superfície de Marte a partir de comandos enviados da Terra. É exatamente este exemplo que o projeto tenta reproduzir.
-
-## Aquele resumão de respeito
 O projeto é um web service, basicamente, ele representa o Universo com seus planetas e as sondas espaciais. O webservice não depende de banco de dados, exatamente para que não haja nenhuma dependência que não seja executar o projeto. 
 Ele permite: listar os planetas existentes no universo, listar as sondas cadastradas, cadastrar uma sonda, pesquisar uma sonda, pousar uma sonda em um planeta, mover a sonda pela superfície do planeta.
-Regras básicas: uma sonda não pode pousar duas vezes, uma sonda não pode pousar em um planeta inexistente, uma sonda não pode pousar além da superfície do planeta, um sonda não pode colidar com outra sonda durante seu trajeto.
 
-## O que é legal mesmo nesse projeto!?
+## Regras de negócio 
+- uma mesma sonda não pode pousar duas vezes
+- uma sonda não pode pousar em um planeta inexistente
+- uma sonda não pode pousar além da superfície do planeta
+- uma sonda não pode pousar em uma posição da superfície já ocupada
+- um sonda não pode colidar com outra sonda durante seu trajeto.
+- uma mesma sonda não pode ser registrada duas vezes
+
+## Highlights do projeto
 - As URLs que a sonda manda de volta para a "Terra" são fotos de Rovers da Nasa que estão realmente na superfície de Marte. Para tanto é consumida uma API da Nasa que pode ser encontrada [aqui](https://api.nasa.gov/index.html#getting-started).
 - A possibilidade de simular comandos enviados da "Terra" para uma sonda no espaço e a resposta dessa sonda.
 - Um exemplo adolescente de divisão entre camadas (DAO, BO e Model) e exemplo de webservices REST usando as APIs Jersey e Jackson.
@@ -17,7 +22,7 @@ Regras básicas: uma sonda não pode pousar duas vezes, uma sonda não pode pous
 ## Tá bom, mas o que preciso fazer pro projeto funcionar!?
 Não existe nenhuma configuração especial para o projeto rodar!!! Basta executar de uma das maneiras explicadas na seção "Oxi, como roda isso?" (vulgo, próxima seção)
 
-## Oxi, como roda isso?
+## Como executar?
 - Usando DOCKER
 Abra o prompt de comando, power shell ou bash e execute o comando:
 `docker pull costalopes/planetarymissionws` -> para obter a imagem
