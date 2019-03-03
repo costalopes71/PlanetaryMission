@@ -69,7 +69,7 @@ mover sonda | `http://localhost:8080/PlanetaryMission/rest/probe/move` | POST |
 | AÇÃO | REQUEST | RESPONSE |
 | ------|-----|-----|
 listar planetas |  | `{ "planetId" = 1001, "name" = "Mars" }` |
-cadastrar sonda | um texto no body do http. Ex: `BR29 Probe`| mensagem texto de sucesso ou erro |
+cadastrar sonda | `{ "name" : "Brazils Probe 234R" }` | mensagem texto de sucesso ou erro |
 pousar sonda | `{ "equipmentId" : 1928912, "planetId" : 1001, "positionX" : 5, "positionY" : 5 }` | objeto sonda em json |
 mover sonda | `{ "equipmentId" : 2378237, "movement" : "R\|R\|M\|M" }` | mensagem texto de sucesso ou erro |
 
