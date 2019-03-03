@@ -24,6 +24,7 @@ import br.com.elo7.planetarymission.model.directions.Movement;
 import br.com.elo7.planetarymission.model.equipment.impl.Probe;
 import br.com.elo7.planetarymission.resource.to.LandTO;
 import br.com.elo7.planetarymission.resource.to.MovementTO;
+import br.com.elo7.planetarymission.resource.to.ProbeTO;
 
 @Path("/probe")
 public class ProbeResource {
@@ -38,9 +39,9 @@ public class ProbeResource {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response register(String name, @Context UriInfo uriInfo) {
+	public Response register(ProbeTO probeTO, @Context UriInfo uriInfo) {
 		
-		Probe probe = new Probe(name);
+		Probe probe = new Probe(probeTO.getName());
 		try {
 			probeBO.registerProbe(probe);
 		} catch (RegistrationException e) {
