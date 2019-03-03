@@ -97,7 +97,7 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 	}
 	
 	@Override
-	public void travelRoute(Movement movements) throws MovementException {
+	public void travelRoute(Movement... movements) throws MovementException {
 		travelRoute(Arrays.asList(movements));
 	}
 	
@@ -106,8 +106,8 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 		
 		CardinalPoint rollbackDirection = currentDirection;
 		
-		int roolbackX = this.positionX;
-		int roolbackY = this.positionY;
+		int rollbackX = this.positionX;
+		int rollbackY = this.positionY;
 		
 		for (Movement movement : movements) {
 			
@@ -127,7 +127,7 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 					}
 				
 			} catch (MovementException e) {
-				rollbackPositions(rollbackDirection, roolbackX, roolbackY);
+				rollbackPositions(rollbackDirection, rollbackX, rollbackY);
 				throw new MovementException(e);
 			}
 			
@@ -143,11 +143,11 @@ public abstract class PlanetaryEquipment implements Directional, Serializable {
 				//
 				// se a sonda moveu pra frente, desocupar a posicao de pouso
 				//
-				planet.clearOutSurfacePosition(roolbackX, roolbackY);
+				planet.clearOutSurfacePosition(rollbackX, rollbackY);
 				
 			}
 		} catch (MovementException e) {
-			rollbackPositions(rollbackDirection, roolbackX, roolbackY);
+			rollbackPositions(rollbackDirection, rollbackX, rollbackY);
 			throw new MovementException(e);
 		}
 		

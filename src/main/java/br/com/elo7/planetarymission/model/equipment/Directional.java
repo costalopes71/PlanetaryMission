@@ -8,6 +8,6 @@ import br.com.elo7.planetarymission.model.directions.Movement;
 public interface Directional {
 
 	void travelRoute(Collection<Movement> movements) throws MovementException;
-	void travelRoute(Movement movements) throws MovementException;
+	void travelRoute(Movement... movements) throws MovementException;
 	
 }
