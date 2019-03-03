@@ -4,11 +4,14 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.com.elo7.planetarymission.exceptions.MovementException;
 import br.com.elo7.planetarymission.model.universe.Planet;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PlanetTestCase {
 
 	private Planet planet;
