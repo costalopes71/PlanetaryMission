@@ -29,7 +29,7 @@ public class GenericEquipmentDAOImp<T extends PlanetaryEquipment, K> implements 
 	public T find(K equipmentId) throws RegistrationException {
 		
 		PlanetaryEquipment equipment = equipments.stream()
-				.filter(eqp -> eqp.getEquipmentId() == (int) equipmentId)
+				.filter(eqp -> eqp.getEquipmentId() == (Integer) equipmentId)
 				.findAny()
 				.orElse(null);
 
