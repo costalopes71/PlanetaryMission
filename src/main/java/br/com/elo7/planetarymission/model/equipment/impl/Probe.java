@@ -88,9 +88,9 @@ public final class Probe extends PlanetaryEquipment {
 					//
 					// se a chamada a api nao retornou nenhuma foto, chamada recursivamente 
 					//
-					while (photosQueue.isEmpty()) {
-						takePhoto();
-					}
+//					while (photosQueue.isEmpty()) {
+//						takePhoto();
+//					}
 					
 				}
 			} catch (SerializePhotosException e) {
@@ -98,7 +98,7 @@ public final class Probe extends PlanetaryEquipment {
 				return;
 			}
 			
-			serializedPhotoToEarth = photosQueue.poll().getUrl();
+			serializedPhotoToEarth = photosQueue.size() == 0 ? "" : photosQueue.poll().getUrl();
 		}
 		
 	}

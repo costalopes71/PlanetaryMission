@@ -1,4 +1,4 @@
-package br.com.elo7.planetarymission.model.test.testcases;
+package br.com.elo7.planetarymission.model.universe;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
